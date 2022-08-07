@@ -7,14 +7,20 @@ from datetime import datetime
 class BaseModel:
     """Defines all common attributes/methods for other classes."""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initialise attributes of BaseModel object."""
-        # assign with an uuid when an instance is created
-        self.id = str(uuid.uuid4())
-        # assign with the current datetime when an instance is created
-        self.created_at = datetime.now()
-        # assign with the current datetime when an instance is created/updated
-        self.updated_at = self.created_at
+        if kwargs is not None and len(kwargs):
+            self.id = kwargs['id']
+            self.created_at = datetime.strptime(kwargs['created_at'],
+                                                '%Y-%m-%dT%H:%M:%S.%f')
+            self.updated_at = datetime.strptime(kwargs['updated_at'],
+                                                '%Y-%m-%dT%H:%M:%S.%f')
+        else:
+            # assign uuid
+            self.id = str(uuid.uuid4())
+            # assign current datetime
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Return string representation of BaseModel object."""
@@ -25,7 +31,7 @@ class BaseModel:
         self.updated_at = datetime.now()
 
     def to_dict(self):
-        """Return a dictionary containing all keys/values of the instance."""
+        """Return dictionary representation of BaseModel object."""
         my_dict = dict(self.__dict__)
         my_dict["__class__"] = type(self).__name__
         my_dict["created_at"] = self.created_at.isoformat()
