@@ -12,9 +12,11 @@ class FileStorage:
     def get_cls(self, name):
         """Return a dict of all valid classes and their constructors."""
         from models.base_model import BaseModel
+        from models.user import User
 
         classes = {
-            "BaseModel": BaseModel
+            "BaseModel": BaseModel,
+            "User": User
         }
 
         return classes.get(name)
