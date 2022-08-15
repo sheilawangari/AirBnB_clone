@@ -9,19 +9,48 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    def get_cls(self, name):
+        """Return a dict of all valid classes and their constructors."""
+        from models.base_model import BaseModel
+
+        classes = {
+            "BaseModel": BaseModel
+        }
+
+        return classes.get(name)
+
     def all(self):
         """Return the dictionary __objects."""
         return FileStorage.__objects
 
     def new(self, obj):
         """Set in __objects the obj with key <obj class name>.id."""
-        class_name = type(obj).__name__
-        key = class_name + "." + str(obj.id)
+        cls_name = type(obj).__name__
+        key = cls_name + "." + str(obj.id)
         FileStorage.__objects[key] = obj
+
+    def delete(self, id):
+        """Delete object with the given id from __objects."""
+        try:
+            FileStorage.__objects.pop(id)
+        except Exception:
+            pass
+
+    def update(self, obj_id, attr_name, attr_value):
+        """Update given attribute of given object with given value."""
+        # get corresponding object
+        obj = FileStorage.__objects.get(obj_id)
+        attr_type = type(getattr(obj, attr_name, ""))
+
+        # set attribute in given object
+        try:
+            setattr(obj, attr_name, attr_type(attr_value))
+        except Exception:
+            print(f"Unable to set {attr_name} to {attr_value}")
 
     def save(self):
         """Serialize __objects to the JSON file."""
-        # creat object to serialize
+        # create object to serialize
         path = FileStorage.__file_path
         my_dict = {}
 
@@ -36,8 +65,6 @@ class FileStorage:
 
     def reload(self):
         """Deserializes the JSON file to __objects."""
-        from models.base_model import BaseModel
-
         path = FileStorage.__file_path
         my_dict = {}
 
@@ -48,4 +75,7 @@ class FileStorage:
             pass
 
         for key, value in my_dict.items():
-            FileStorage.__objects[key] = BaseModel(**value)
+            cls_name = key.split('.')[0]
+            cls = self.get_cls(cls_name)
+
+            FileStorage.__objects[key] = cls(**value)
