@@ -1,28 +1,41 @@
-# AirBnB clone - The console
+# AirBnB Clone - The Console
 
 ## Description
 
-This team project is part of the ALX Software Engineering program.
-It's the first step towards building a first full web application: an AirBnB clone.
-This first step involves building a custom command-line interface(console) for data management.
+This is a team project that is part of the ALX Software Engineering Program curriculum.
+It is the first step towards building the full web application: AirBnB Clone.
+
+In this first step we:
+- Create our data models
+- Build a custom command-line interface(console) for data management
+- Manage(create, update, destroy, etc) objects via the console
+- Store and persist objects to a file (JSON file)
 
 ## Usage
 
 The console works both in interactive mode and non-interactive mode, much like a Unix shell.
-It prints a prompt **(hbnb)** and waits for the user for input.
 
-Command | Example
-------- | -------
-Run the console | ```./console.py```
-Quit the console | ```(hbnb) quit```
-Display the help for a command | ```(hbnb) help <command>```
-Create an object (prints its id)| ```(hbnb) create <class>```
-Show an object | ```(hbnb) show <class> <id>``` or ```(hbnb) <class>.show(<id>)```
-Destroy an object | ```(hbnb) destroy <class> <id>``` or ```(hbnb) <class>.destroy(<id>)```
-Show all objects, or all instances of a class | ```(hbnb) all``` or ```(hbnb) all <class>```
-Update an attribute of an object | ```(hbnb) update <class> <id> <attribute name> "<attribute value>"``` or ```(hbnb) <class>.update(<id>, <attribute name>, "<attribute value>")```
+### Interactive mode example
+
+The shell should work like this in interactive mode:
+
+```bash
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
+```
 
 ### Non-interactive mode example
+
+The shell should work like this in non-interactive mode:
 
 ```bash
 $ echo "help" | ./console.py
@@ -30,22 +43,48 @@ $ echo "help" | ./console.py
 
 Documented commands (type help <topic>):
 ========================================
-EOF  all  count  create  destroy  help  quit  show  update
+EOF  help  quit
+(hbnb)
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
 ```
+
+### Commands
+
+Command | Description
+------- | -----------
+help `[command]` | Displays all available commands and provides documentation
+quit | Exits the program
+EOF  | Exits the program
+create `class_name`       | Creates a new instance of the class `class_name`
+show `class_name` `id`    | Prints the string representation of an instance based on the `class_name` and `id`
+destroy `class_name` `id` | Deletes an instance based on the `class_name` and `id`
+all `[class_name]`        | Prints the string representation of all instances based or not on the `class_name`
+update `class_name` `id` `attribute_name` `"attribute_value"` | Updates an instance based on the `class_name` and `id` by adding or updating `attribute_name`
 
 ## Models
 
-The folder [models](./models/) contains all the classes used in this project.
+The folder [models](./models/) contains all the data models used in this project defined as classes.
 
-File | Description | Attributes
----- | ----------- | ----------
-[base_model.py](./models/base_model.py) | BaseModel class for all the other classes | id, created_at, updated_at
-[user.py](./models/user.py) | User class for future user information | email, password, first_name, last_name
-[amenity.py](./models/amenity.py) | Amenity class for future amenity information | name
-[city.py](./models/city.py) | City class for future location information | state_id, name
-[state.py](./models/state.py) | State class for future location information | name
-[place.py](./models/place.py) | Place class for future accomodation information | city_id, user_id, name, description, number_rooms, number_bathrooms, max_guest, price_by_night, latitude, longitude, amenity_ids
-[review.py](./models/review.py) | Review class for future user/host review information | place_id, user_id, text
+File | Description
+---- | -----------
+[base_model.py](./models/base_model.py) | BaseModel class for all the other classes
+[user.py](./models/user.py) | User class for user data
+[amenity.py](./models/amenity.py) | Amenity class for amenity data
+[city.py](./models/city.py) | City class for city location data
+[state.py](./models/state.py) | State class for state location data
+[place.py](./models/place.py) | Place class for accommodation data
+[review.py](./models/review.py) | Review class for user/host review data
 
 ## File storage
 
@@ -59,7 +98,7 @@ This allows the storage to be reloaded automatically at initialization, which re
 
 ## Tests
 
-All the code is tested with the python **unittest** module.
+All the code is tested using python's **unittest** module.
 The tests are in the [tests](./tests/) folder.
 
 ## Authors
