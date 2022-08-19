@@ -37,7 +37,7 @@ class TestFileStorage(unittest.TestCase):
     def test_all(self):
         """Test the all method of FileStorage."""
         fs_obj = FileStorage._FileStorage__objects
-        self.assertEqual(self.fs.all(), fs_obj)
+        self.assertIs(self.fs.all(), fs_obj)
 
     def test_new(self):
         """Test the new method of FileStorage."""
