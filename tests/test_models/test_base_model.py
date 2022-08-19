@@ -2,6 +2,7 @@
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
+from models import storage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -13,7 +14,7 @@ class TestBaseModel(unittest.TestCase):
         self.bm2 = BaseModel()
 
     def test_init(self):
-        """Test that object attributes are initialized correctly."""
+        """Test that new object attributes are initialized correctly."""
         # test that objects are instances of the class
         self.assertIsInstance(self.bm1, BaseModel)
 
@@ -30,6 +31,10 @@ class TestBaseModel(unittest.TestCase):
 
         # test that id attributes of 2 differet objects are different
         self.assertNotEqual(self.bm1.id, self.bm2.id)
+
+    def test_init_kwargs(self):
+        """Test initialization of BaseModel object using kwargs."""
+        pass
 
     def test_str(self):
         """Test the __str__ method of BaseModel."""
@@ -54,8 +59,28 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """Test the save method of BaseModel."""
-        dt_before = self.bm2.updated_at
-        self.bm2.save()
-        dt_after = self.bm2.updated_at
+        import os
 
+        fp = storage._FileStorage__file_path
+
+        # remove the json file
+        try:
+            os.remove(fp)
+        except Exception:
+            pass
+
+        self.assertFalse(os.path.exists(fp))
+
+        dt_before = self.bm2.updated_at
+
+        # saving should create a new file and change updated_at
+        self.bm2.save()
+        self.assertTrue(os.path.exists(fp))
+
+        dt_after = self.bm2.updated_at
         self.assertNotEqual(dt_before, dt_after)
+
+        try:
+            os.remove(fp)
+        except Exception:
+            pass
