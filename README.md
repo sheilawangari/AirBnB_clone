@@ -104,4 +104,4 @@ The tests are in the [tests](./tests/) folder.
 ## Authors
 
 - [**Martin Mulwa**](https://github.com/martinmulwa)
-- [**Sheila**](https://github.com/sheilawangari)
+- [**Sheila Wangari**](https://github.com/sheilawangari)
