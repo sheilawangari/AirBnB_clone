@@ -5,7 +5,10 @@
 This is a team project that is part of the ALX Software Engineering Program curriculum.
 The goal is to build the fullweb application: AirBnb Clone. 
 
-## 1. AirBnb Clone - The Console
+## 1. AirBnb Clone - The Console 
+
+![Console flow](/images/consolepic.png) 
+
 It is the first step towards building the full web application: AirBnB Clone.
 
 In this first step we:
@@ -108,6 +111,7 @@ The tests are in the [tests](./tests/) folder.
 
 ## 2. AirBnB Clone - Web static 
 
+![Web Static flow](/images/webstaticpic.png)
 
 It is the second step towards building the full web application: AirBnB Clone.
 
