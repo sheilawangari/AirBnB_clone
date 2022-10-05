@@ -1,8 +1,11 @@
-# AirBnB Clone - The Console
+# AirBnB Clone 
 
 ## Description
 
 This is a team project that is part of the ALX Software Engineering Program curriculum.
+The goal is to build the fullweb application: AirBnb Clone. 
+
+## 1. AirBnb Clone - The Console
 It is the first step towards building the full web application: AirBnB Clone.
 
 In this first step we:
@@ -11,11 +14,11 @@ In this first step we:
 - Manage(create, update, destroy, etc) objects via the console
 - Store and persist objects to a file (JSON file)
 
-## Usage
+### Usage
 
 The console works both in interactive mode and non-interactive mode, much like a Unix shell.
 
-### Interactive mode example
+#### Interactive mode example
 
 The shell should work like this in interactive mode:
 
@@ -33,7 +36,7 @@ EOF  help  quit
 $
 ```
 
-### Non-interactive mode example
+#### Non-interactive mode example
 
 The shell should work like this in non-interactive mode:
 
@@ -59,7 +62,7 @@ EOF  help  quit
 $
 ```
 
-### Commands
+#### Commands
 
 Command | Description
 ------- | -----------
@@ -72,7 +75,7 @@ destroy `class_name` `id` | Deletes an instance based on the `class_name` and `i
 all `[class_name]`        | Prints the string representation of all instances based or not on the `class_name`
 update `class_name` `id` `attribute_name` `"attribute_value"` | Updates an instance based on the `class_name` and `id` by adding or updating `attribute_name`
 
-## Models
+### Models
 
 The folder [models](./models/) contains all the data models used in this project defined as classes.
 
@@ -86,7 +89,7 @@ File | Description
 [place.py](./models/place.py) | Place class for accommodation data
 [review.py](./models/review.py) | Review class for user/host review data
 
-## File storage
+### File storage
 
 The folder [engine](./models/engine/) manages the serialization and deserialization of all the data, following a JSON format.
 
@@ -96,10 +99,20 @@ A FileStorage class is defined in [file_storage.py](./models/engine/file_storage
 The [__init__.py](./models/__init__.py) file contains the instantiation of the FileStorage class called **storage**, followed by a call to the method reload() on that instance.
 This allows the storage to be reloaded automatically at initialization, which recovers the serialized data.
 
-## Tests
+### Tests
 
 All the code is tested using python's **unittest** module.
-The tests are in the [tests](./tests/) folder.
+The tests are in the [tests](./tests/) folder. 
+
+
+
+## 2. AirBnB Clone - Web static 
+
+
+It is the second step towards building the full web application: AirBnB Clone.
+
+In this step we learn how to manipulate HTML and CSS.
+
 
 ## Authors
 
