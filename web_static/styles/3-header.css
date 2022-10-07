@@ -7,6 +7,8 @@ header {
     align-items: center;
   } 
 
-  header img {
-    margin-left: 20px;
-  }
+#logo {
+  background-image: url(../images/Airbnb2logo.png);
+  height: 60px;
+  width: 140px;
+}
